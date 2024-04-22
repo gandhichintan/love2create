@@ -1,0 +1,1016 @@
+﻿@model ProjectModel
+@using Nop.Admin.Models.Projects
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+<div id="project-edit">
+    <ul>
+        <li @Html.RenderSelectedTabIndex(0, GetSelectedTabIndex())>
+            @T("Admin.Catalog.Project.Info")
+        </li>
+        <li @Html.RenderSelectedTabIndex(1, GetSelectedTabIndex())>
+            @T("Admin.Catalog.Products.Categories")
+        </li>
+    </ul>
+    <div>
+        @TabInfo()
+    </div>
+    <div>
+        @TabCategories()
+    </div>
+   
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#project-edit").kendoTabStrip({
+            animation: {
+                open: {
+                    effects: "fadeIn"
+                }
+            },
+            select: tabstrip_on_tab_select
+        });
+    });
+</script>
+
+@helper TabInfo()
+{ 
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">Name:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Description:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(x => x.Description, "RichEditor")
+                @Html.ValidationMessageFor(model => model.Description)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Caption:
+            </td>
+            <td class="adminData">
+                @Html.TextAreaFor(model => model.Caption)
+                @Html.ValidationMessageFor(model => model.Caption)
+            </td>
+        </tr>
+        @*<tr>
+            <td class="adminTitle">
+                Instructions:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(x => x.Instructions, "RichEditor")
+                @Html.ValidationMessageFor(model => model.Instructions)
+            </td>
+        </tr>*@
+        <tr>
+            <td class="adminTitle">Notes:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Notes, "RichEditor")
+                @Html.ValidationMessageFor(model => model.Notes)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Keywords:
+            </td>
+            <td class="adminData">
+                @Html.TextAreaFor(model => model.Keywords)
+                @Html.ValidationMessageFor(model => model.Keywords)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Creation Date:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Date)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Project of the day:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ProjectOfTheDay)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Publish Date:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.PublishedDate)
+            </td>
+        </tr>
+        @*<tr>
+            <td class="adminTitle">
+                Audio File:
+            </td>
+            <td class="adminData">
+                <input type="file" name="audio-file-path" id="audio-file-path" />
+            </td>
+        </tr>*@
+        <tr>
+            <td class="adminTitle">Published:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Published)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Archived:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.IsArchived)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Blog Post:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.IsArticle)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Technique:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.IsTechnique)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Round up:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.IsRoundup)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Featured:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Featured)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Show on Home Page:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ShowOnHomePage)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Show on Community:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ShowOnCommunity)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Project Tags:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ProjectTags)
+            </td>
+        </tr>
+    </table>
+}
+@helper TabCategories()
+{
+   @Html.Partial("_CreateOrUpdate.Categories", Model) 
+}
+@*@helper TabProducts()
+{
+    if (Model.Id > 0)
+    {
+        var gridPageSize = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().GridPageSize;
+    <table class="adminContent">
+        <tr>
+            <td>
+                @(Html.Telerik().Grid<ProjectModel.ProjectProductModel>()
+                .Name("products-grid")
+                    .DataKeys(keys =>
+                    {
+                        keys.Add(x => x.Id);
+                    })
+                    .DataBinding(dataBinding =>
+                    {
+                        dataBinding.Ajax()
+                            .Select("ProjectProductList", "Project", new { projectId = Model.Id })
+                            .Update("ProductUpdate", "Project")
+                            .Delete("ProductDelete", "Project");
+                    })
+                    .Columns(columns =>
+                    {
+                        columns.Bound(x => x.ProductName)
+                            .Width(500);
+                        columns.Bound(x => x.DisplayOrder2)
+                            .Width(100)
+                            .Centered();
+                        columns.Command(commands =>
+                        {
+                            commands.Edit().Text(T("Admin.Common.Edit").Text);
+                            commands.Delete().Text(T("Admin.Common.Delete").Text);
+                        })
+                        .Width(180);
+                    })
+                    .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+                    .EnableCustomBinding(true))
+            </td>
+        </tr>
+        <tr>
+            <td width="100%">
+                <input type="submit" id="btnAddNewProduct" name="btnAddNewProduct" value="@T("Admin.Catalog.Categories.Products.AddNew")" onclick="javascript:OpenWindow('@(Url.Action("ProductAddPopup", "Project", new { projectId = Model.Id, btnId = "btnRefreshProducts", formId = "product-form" }))    ', 800, 700, true); return false;" class="t-button" />
+                <input type="submit" id="btnRefreshProducts" name="btnRefreshProducts" style="display: none" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#btnRefreshProducts').click(function () {
+                            //refresh grid
+                            var optionsGrid = $("#products-grid");
+                            optionsGrid.data('tGrid').ajaxRequest();
+
+                            //return false to don't reload a page
+                            return false;
+                        });
+                    });
+                </script>
+            </td>
+        </tr>
+    </table>
+    }
+    else
+    {
+    <text>You need to save the project before you can map products for this project page.</text>
+    }
+}
+@helper TabRelatedProjects()
+{
+    if (Model.Id > 0)
+    {
+    <table class="adminContent">
+        <tr>
+            <td>
+                @(Html.Telerik().Grid<ProjectModel.RelatedProjectModel>()
+                .Name("relatedproducts-grid")
+                    .DataKeys(keys =>
+                    {
+                        keys.Add(x => x.Id);
+                    })
+                    .DataBinding(dataBinding =>
+                    {
+                        dataBinding.Ajax()
+                            .Select("RelatedProjectList", "Project", new { projectId = Model.Id })
+                            .Update("RelatedProjectUpdate", "Project")
+                            .Delete("RelatedProjectDelete", "Project");
+                    })
+                    .Columns(columns =>
+                    {
+                        columns.Bound(x => x.Project2Name)
+                            .Width(500)
+                            .ReadOnly();
+                        columns.Bound(x => x.DisplayOrder)
+                            .Width(100)
+                            .Centered();
+                        columns.Command(commands =>
+                        {
+                            commands.Edit().Text(T("Admin.Common.Edit").Text);
+                            commands.Delete().Text(T("Admin.Common.Delete").Text);
+                        })
+                        .Width(180);
+                    })
+                    .EnableCustomBinding(true))
+            </td>
+        </tr>
+        <tr>
+            <td width="100%">
+                <input type="submit" id="btnAddNewRelatedProduct" name="btnAddNewRelatedProduct" value="@T("Add new related project")" onclick="javascript:OpenWindow('@(Url.Action("RelatedProjectAddPopup", "Project", new { projectId = Model.Id, btnId = "btnRefreshRelatedProducts", formId = "product-form" }))    ', 800, 700, true); return false;" class="t-button" />
+                <input type="submit" id="btnRefreshRelatedProducts" name="btnRefreshRelatedProducts" style="display: none" />
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $('#btnRefreshRelatedProducts').click(function () {
+                            //refresh grid
+                            var optionsGrid = $("#relatedproducts-grid");
+                            optionsGrid.data('tGrid').ajaxRequest();
+
+                            //return false to don't reload a page
+                            return false;
+                        });
+                    });
+                </script>
+            </td>
+        </tr>
+    </table>
+    }
+    else
+    {
+    <text>You need to save the project before you can map related projects for this project page.</text>
+    }
+}
+@helper TabProjectInstructions()
+{
+    if (Model.Id > 0)
+    {
+    <table class="adminContent" width="100%">
+        <tr>
+            <td>
+                @(Html.Telerik().Grid<ProjectModel.ProjectInstructionsModel>()
+                .Name("projectInstructions-grid")
+                    .DataKeys(keys =>
+                    {
+                        keys.Add(x => x.Id);
+                    })
+                    .DataBinding(dataBinding =>
+                    {
+                        dataBinding.Ajax()
+                            .Select("ProjectInstructionList", "Project", new { projectId = Model.Id })
+                            .Update("ProjectInstructionUpdate", "Project")
+                            .Delete("ProjectInstructionDelete", "Project");
+                    })
+                    .Columns(columns =>
+                    {
+                        columns.Bound(x => x.PictureUrl)
+                            .ClientTemplate("<img style='max-width:300px;' alt='<#= PictureId #>' src='<#= PictureUrl #>' />")
+                            .ReadOnly();
+                        columns.Bound(x => x.Title)
+                            .Centered()
+                            .ReadOnly();
+                        columns.Bound(x => x.InstructionDescription)
+                            .Centered()
+                            .ReadOnly();
+                        columns.Bound(x => x.InstructionVideo)
+                            .Centered()
+                            .ReadOnly();
+                        columns.Bound(x => x.DisplayOrder)
+                            .Centered()
+                            .ReadOnly();
+                        columns.Bound(x => x.Id)
+                            .ClientTemplate("<input type='submit' id='btnEditInstruction' name='btnEditInstruction' value='Edit Instruction' onclick='javascript:OpenWindow(\"/Admin/Project/EditProjectInstructions?projectId=<#= Id #>&btnId=btnRefreshInstructions&formId=product-form\", 800, 700, true); return false;' class='t-button' />")
+                            .Title(T("Admin.Common.Edit").Text);
+                        columns.Command(commands =>
+                            {
+                                commands.Delete().Text(T("Admin.Common.Delete").Text);
+                            }).Width(180);                        
+                    })
+                    .EnableCustomBinding(true))
+            </td>
+        </tr>
+    </table>
+    
+    <input type="submit" id="btnRefreshInstructions" name="btnRefreshInstructions" style="display: none" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#addProjectInstruction').click(function () {
+                var title = $("#@Html.FieldIdFor(model => model.projectInstructionsModel.Title)").val();
+                var description = $('.instruction-desc iframe').contents().find('#tinymce').html();
+                var pictureId = $("#@Html.FieldIdFor(model => model.projectInstructionsModel.PictureId)").val();
+                var video = $("#@Html.FieldIdFor(model => model.projectInstructionsModel.InstructionVideo)").val();
+                var displayOrder = $("#@Html.FieldIdFor(model => model.projectInstructionsModel.DisplayOrder)").val();
+                var published = $("#@Html.FieldIdFor(model => model.projectInstructionsModel.Published)").is(':checked');
+                
+                $.ajax({
+                    cache:false,
+                    type: "POST",
+                    url: "@(Url.Action("ProjectInstructionAdd", "Project"))",
+                    data: { "title": title, "description": description, "pictureId": pictureId, "video": video, "displayOrder": displayOrder, "published": published, "projectId": @(Model.Id) },
+                success: function (data) {
+                    var projectInstructionsGrid = $("#projectInstructions-grid");
+                    projectInstructionsGrid.data('tGrid').ajaxRequest();
+                },
+                error:function (xhr, ajaxOptions, thrownError){
+                    alert('Failed to add Project Instruction.');
+                }  
+            });
+
+            $("#@Html.FieldIdFor(model => model.projectInstructionsModel.Title)").val("");
+            $('.instruction-desc iframe').contents().find('#tinymce').html("");
+            $("#@Html.FieldIdFor(model => model.projectInstructionsModel.PictureId)").val("0");
+            $(".removepic-helper .t-button").trigger("click");
+            $(".removepic-helper .qq-upload-list").empty();
+            $("#@Html.FieldIdFor(model => model.projectInstructionsModel.InstructionVideo)").val("");
+            $("#@Html.FieldIdFor(model => model.projectInstructionsModel.DisplayOrder)").val("0");
+
+        });
+
+        $('#btnRefreshInstructions').click(function () {
+            //refresh grid
+            var optionsGrid = $("#projectInstructions-grid");
+            optionsGrid.data('tGrid').ajaxRequest();
+
+            //return false to don't reload a page
+            return false;
+        });
+        });
+    </script>
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">Title: 
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.projectInstructionsModel.Title)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Description: 
+            </td>
+            <td class="adminData instruction-desc">
+                @Html.EditorFor(model => model.projectInstructionsModel.InstructionDescription, "RichEditor")
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Picture: 
+            </td>
+            <td class="adminData removepic-helper">
+                @Html.EditorFor(model => model.projectInstructionsModel.PictureId)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Video: 
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.projectInstructionsModel.InstructionVideo)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Display Order: 
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.projectInstructionsModel.DisplayOrder)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Published: 
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.projectInstructionsModel.Published)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left">
+                <input type="button" id="addProjectInstruction" class="t-button" value="Add Project Instruction" />
+            </td>
+        </tr>
+    </table>
+    }
+    else
+    {
+    <text>You need to save the project before you can map project instructions for this project page.</text>
+    }
+}
+@helper TabProjectMiscellaneous()
+{
+    if (Model.Id > 0)
+    {
+    <table class="adminContent">
+        <tr>
+            <td>
+                @(Html.Telerik().Grid<ProjectModel.ProjectMiscModel>()
+                .Name("projectMisc-grid")
+                    .DataKeys(keys =>
+                    {
+                        keys.Add(x => x.Id);
+                    })
+                    .DataBinding(dataBinding =>
+                    {
+                        dataBinding.Ajax()
+                            .Select("ProjectMiscList", "Project", new { projectId = Model.Id })
+                            .Update("ProjectMiscUpdate", "Project")
+                            .Delete("ProjectMiscDelete", "Project");
+                    })
+                    .Columns(columns =>
+                    {
+                        columns.Bound(x => x.Description)
+                            .Width(500)
+                            .ReadOnly();
+                        columns.Bound(x => x.DisplayOrder)
+                            .Width(100)
+                            .Centered();
+                        columns.Command(commands =>
+                        {
+                            commands.Edit().Text(T("Admin.Common.Edit").Text);
+                            commands.Delete().Text(T("Admin.Common.Delete").Text);
+                        })
+                        .Width(180);
+                    })
+                    .EnableCustomBinding(true))
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#addProjectMisc').click(function () {
+                var description = $("#@Html.FieldIdFor(model => model.projectMiscModel.Description)").val();
+                var displayOrder = $("#@Html.FieldIdFor(model => model.projectMiscModel.DisplayOrder)").val();
+                var published = $("#@Html.FieldIdFor(model => model.projectMiscModel.Published)").is(':checked');
+
+                $.ajax({
+                    cache:false,
+                    type: "POST",
+                    url: "@(Url.Action("ProjectMiscAdd", "Project"))",
+                    data: { "description": description, "displayOrder": displayOrder, "published": published, "projectId": @(Model.Id) },
+                success: function (data) {
+                    var projectMiscGrid = $("#projectMisc-grid");
+                    projectMiscGrid.data('tGrid').ajaxRequest();
+                },
+                error:function (xhr, ajaxOptions, thrownError){
+                    alert('Failed to add Project Misselaneous.');
+                }  
+            });
+        });
+        });
+    </script>
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">Description: 
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(x => x.projectMiscModel.Description, "RichEditor")
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Display Order: 
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.projectMiscModel.DisplayOrder)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Published: 
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.projectMiscModel.Published)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left">
+                <input type="button" id="addProjectMisc" class="t-button" value="Add Project Misselaneous" />
+            </td>
+        </tr>
+    </table>
+    }
+    else
+    {
+    <text>You need to save the project before you can map project misselaneous for this project page.</text>
+    }
+}
+@helper TabProjectMaterials()
+{
+    if (Model.Id > 0)
+    {
+    <table class="adminContent">
+        <tr>
+            <td>
+                @(Html.Telerik().Grid<ProjectModel.ProjectMaterialModel>()
+.Name("projectMaterial-grid")
+.DataKeys(keys =>
+{
+    keys.Add(x => x.Id);
+})
+.DataBinding(dataBinding =>
+{
+    dataBinding.Ajax()
+    .Select("ProjectMaterialList", "Project", new { projectId = Model.Id })
+    .Update("ProjectMaterialUpdate", "Project")
+    .Delete("ProjectMaterialDelete", "Project");
+})
+.Columns(columns =>
+{
+    columns.Bound(x => x.Category)
+    .Width(300)
+    .ReadOnly();
+    columns.Bound(x => x.Product)
+    .Width(300)
+    .ReadOnly();
+    columns.Bound(x => x.IsFeatured)
+    .Width(100)
+    .Centered();
+    columns.Bound(x => x.DisplayOrder)
+    .Width(100)
+    .Centered();
+    columns.Command(commands =>
+    {
+        commands.Edit().Text(T("Admin.Common.Edit").Text);
+        commands.Delete().Text(T("Admin.Common.Delete").Text);
+    })
+    .Width(180);
+})
+.EnableCustomBinding(true))
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        $(function() {
+            $("#@Html.FieldIdFor(model => model.projectMaterialModel.CategoryId)").change(function() {
+                var selectedItem = $(this).val();
+                var ddlProducts = $("#@Html.FieldIdFor(model => model.projectMaterialModel.ProductId)")
+                $.ajax({
+                    cache:false,
+                    type: "GET",
+                    url: "@(Url.Action("GetProductsByCategory", "Project"))",
+                    data: { "categoryId": selectedItem },
+                success: function (data) {
+                    ddlProducts.html('');
+                    $.each(data, function(id, option) {
+                        ddlProducts.append($('<option></option>').val(option.id).html(option.name));
+                    });
+                },
+                error:function (xhr, ajaxOptions, thrownError){
+                    alert('Failed to retrieve products.');
+                }
+            });
+        });
+        });
+
+        $(document).ready(function () {
+            $('#addProjectMaterial').click(function () {
+                var categoryId = $("#@Html.FieldIdFor(model => model.projectMaterialModel.CategoryId)").val();
+                var productId = $("#@Html.FieldIdFor(model => model.projectMaterialModel.ProductId)").val();
+                var displayOrder = $("#@Html.FieldIdFor(model => model.projectMaterialModel.DisplayOrder)").val();
+                var isFeatured = $("#@Html.FieldIdFor(model => model.projectMaterialModel.IsFeatured)").val();
+
+                $.ajax({
+                    cache:false,
+                    type: "POST",
+                    url: "@(Url.Action("ProjectMaterialAdd", "Project"))",
+                    data: { "categoryId": categoryId, "productId": productId, "displayOrder": displayOrder, "isFeatured": isFeatured, "projectId": @(Model.Id) },
+                success: function (data) {
+                    var projectMaterialGrid = $("#projectMaterial-grid");
+                    projectMaterialGrid.data('tGrid').ajaxRequest();
+                },
+                error:function (xhr, ajaxOptions, thrownError){
+                    alert('Failed to add Project Misselaneous.');
+                }
+            });
+        });
+        });
+    </script>
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">Select Category:
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.projectMaterialModel.CategoryId, Model.projectMaterialModel.AvailableCategories)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Select Product:
+            </td>
+            <td class="adminData">
+                @Html.DropDownListFor(model => model.projectMaterialModel.ProductId, Model.projectMaterialModel.AvailableProducts)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Display Order:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.projectMaterialModel.DisplayOrder)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">Featured:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.projectMaterialModel.IsFeatured)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left">
+                <input type="button" id="addProjectMaterial" class="t-button" value="Add Project Misselaneous" />
+            </td>
+        </tr>
+    </table>
+    }
+    else
+    {
+    <text>You need to save the project before you can map project materials for this project.</text>
+    }
+}
+@helper TabProjectVideos()
+{
+    if (Model.Id > 0)
+    {
+        if (Model.NumberOfAvailableVideos > 0)
+        {
+    @(Html.Telerik().Grid<ProjectVideoModel>()
+                    .Name("productvideos-grid")
+                       .DataKeys(keys =>
+                       {
+                           keys.Add(x => x.Id);
+                       })
+                       .DataBinding(dataBinding =>
+                       {
+                           dataBinding.Ajax()
+                               .Select("ProjectVideoList", "Project", new { projectId = Model.Id })
+                               .Insert("ProjectVideoInsert", "Project", new { projectId = Model.Id })
+                               .Update("ProjectVideoUpdate", "Project")
+                               .Delete("ProjectVideoDelete", "Project");
+                       })
+                       .Columns(columns =>
+                       {
+                           columns.Bound(x => x.Video)
+                               .Width(500)
+                               .Centered();
+                           columns.Bound(x => x.DisplayOrder)
+                               .Width(100);
+                           columns.Command(commands =>
+                           {
+                               commands.Edit().Text(T("Admin.Common.Edit").Text);
+                               commands.Delete().Text(T("Admin.Common.Delete").Text);
+                           })
+                           .Width(180);
+                       })
+                       .ToolBar(commands => commands.Insert())
+                       .ClientEvents(events => events.OnEdit("onProjectVideoEdit"))
+                       .EnableCustomBinding(true))
+    
+    <script type="text/javascript">
+        function onProjectVideoEdit(e) {
+            $(e.form).find('#Video').data('tDropDownList').select(function (dataItem) {
+                return dataItem.Value == e.dataItem['VideoId'];
+            });
+        }
+    </script>
+        }
+        else
+        {
+    <text>No Videos Available</text>
+        }
+    }
+    else
+    {
+    <text>You need to save the project before you can map videos for this project page.</text>
+    }
+}
+@helper TabProjectPatterns()
+{
+    if (Model.Id > 0)
+    {
+        if (Model.NumberOfAvailablePatterns > 0)
+        {
+    @(Html.Telerik().Grid<ProjectPatternModel>()
+                    .Name("productpatterns-grid")
+                       .DataKeys(keys =>
+                       {
+                           keys.Add(x => x.Id);
+                       })
+                       .DataBinding(dataBinding =>
+                       {
+                           dataBinding.Ajax()
+                               .Select("ProjectPatternList", "Project", new { projectId = Model.Id })
+                               .Insert("ProjectPatternInsert", "Project", new { projectId = Model.Id })
+                               .Update("ProjectPatternUpdate", "Project")
+                               .Delete("ProjectPatternDelete", "Project");
+                       })
+                       .Columns(columns =>
+                       {
+                           columns.Bound(x => x.Pattern)
+                               .Width(500)
+                               .Centered();
+                           columns.Bound(x => x.DisplayOrder)
+                               .Width(100);
+                           columns.Command(commands =>
+                           {
+                               commands.Edit().Text(T("Admin.Common.Edit").Text);
+                               commands.Delete().Text(T("Admin.Common.Delete").Text);
+                           })
+                           .Width(180);
+                       })
+                       .ToolBar(commands => commands.Insert())
+                       .ClientEvents(events => events.OnEdit("onProjectPatternEdit"))
+                       .EnableCustomBinding(true))
+    
+    <script type="text/javascript">
+        function onProjectPatternEdit(e) {
+            $(e.form).find('#Pattern').data('tDropDownList').select(function (dataItem) {
+                return dataItem.Value == e.dataItem['PatternId'];
+            });
+        }
+    </script>
+        }
+        else
+        {
+    <text>No Videos Available</text>
+        }
+    }
+    else
+    {
+    <text>You need to save the project before you can map videos for this project page.</text>
+    }
+}
+@helper TabProjectArtists()
+{
+    if (Model.Id > 0)
+    {
+        if (Model.NumberOfAvailableArtists > 0)
+        {
+    @(Html.Telerik().Grid<ProjectModel.ProjectCustomerModel>()
+                    .Name("projectartists-grid")
+                       .DataKeys(keys =>
+                       {
+                           keys.Add(x => x.Id);
+                       })
+                       .DataBinding(dataBinding =>
+                       {
+                           dataBinding.Ajax()
+                               .Select("ProjectCustomerList", "Project", new { projectId = Model.Id })
+                               .Insert("ProjectCustomerInsert", "Project", new { projectId = Model.Id })
+                               .Update("ProjectCustomerUpdate", "Project")
+                               .Delete("ProjectCustomerDelete", "Project");
+                       })
+                       .Columns(columns =>
+                       {
+                           columns.Bound(x => x.Customer)
+                               .Width(500)
+                               .Centered();
+                           columns.Bound(x => x.DisplayOrder)
+                               .Width(100);
+                           columns.Command(commands =>
+                           {
+                               commands.Edit().Text(T("Admin.Common.Edit").Text);
+                               commands.Delete().Text(T("Admin.Common.Delete").Text);
+                           })
+                           .Width(180);
+                       })
+                       .ToolBar(commands => commands.Insert())
+                       .ClientEvents(events => events.OnEdit("onProjectCustomerEdit"))
+                       .EnableCustomBinding(true))
+    
+    <script type="text/javascript">
+        function onProjectCustomerEdit(e) {
+            $(e.form).find('#Customer').data('tDropDownList').select(function (dataItem) {
+                return dataItem.Value == e.dataItem['CustomerId'];
+            });
+        }
+    </script>
+        }
+        else
+        {
+    <text>No Artist Available</text>
+        }
+    }
+    else
+    {
+    <text>You need to save the project before you can map Artist for this project page.</text>
+    }
+}
+@helper TabProjectTechniques()
+{
+    if (Model.Id > 0)
+    {
+        if (Model.NumberOfAvailableTechniques > 0)
+        {
+    @(Html.Telerik().Grid<ProjectModel.ProjectTechniquesModel>()
+                    .Name("producttechniques-grid")
+                       .DataKeys(keys =>
+                       {
+                           keys.Add(x => x.Id);
+                       })
+                       .DataBinding(dataBinding =>
+                       {
+                           dataBinding.Ajax()
+                               .Select("ProjectTechniqueList", "Project", new { projectId = Model.Id })
+                               .Insert("ProjectTechniqueAdd", "Project", new { projectId = Model.Id })
+                               .Update("ProjectTechniqueUpdate", "Project")
+                               .Delete("ProjectTechniqueDelete", "Project");
+                       })
+                       .Columns(columns =>
+                       {
+                           columns.Bound(x => x.ProjectTechnique)
+                               .Width(500)
+                               .Centered();
+                           columns.Bound(x => x.DisplayOrder5)
+                               .Width(100);
+                           columns.Command(commands =>
+                           {
+                               commands.Edit().Text(T("Admin.Common.Edit").Text);
+                               commands.Delete().Text(T("Admin.Common.Delete").Text);
+                           })
+                           .Width(180);
+                       })
+                       .ToolBar(commands => commands.Insert())
+                       .ClientEvents(events => events.OnEdit("onProjectTechniqueEdit"))
+                       .EnableCustomBinding(true))
+    
+    <script type="text/javascript">
+        function onProjectTechniqueEdit(e) {
+            $(e.form).find('#ProjectTechnique').data('tDropDownList').select(function (dataItem) {
+                return dataItem.Value == e.dataItem['ProjectTechniqueId'];
+            });
+        }
+    </script>
+        }
+        else
+        {
+    <text>No techniques available</text>
+        }
+    }
+    else
+    {
+    <text>You need to save the project before you can map project techniques for this project page.</text>
+    }
+}
+@helper TabPictures()
+{
+    if (Model.Id > 0)
+    {
+    <div>
+        @(Html.Telerik().Grid<ProductModel.ProductPictureModel>()
+                    .Name("productpictures-grid")
+                    .DataKeys(x =>
+                    {
+                        x.Add(y => y.Id).RouteKey("Id");
+                    })
+                    .Columns(columns =>
+                    {
+                        columns.Bound(x => x.PictureUrl)
+                            .ClientTemplate("<a href='<#= PictureUrl #>' target='_blank'><img alt='<#= PictureId #>' src='<#= PictureUrl #>' width='150' /><a/>")
+                            .ReadOnly();
+                        columns.Bound(x => x.DisplayOrder);
+                        columns.Command(commands =>
+                        {
+                            commands.Edit().Text(T("Admin.Common.Edit").Text);
+                            commands.Delete().Text(T("Admin.Common.Delete").Text);
+                        });
+
+                    })
+                    .Editable(x =>
+                    {
+                        x.Mode(GridEditMode.InLine);
+                    })
+                    .DataBinding(dataBinding =>
+                    {
+                        dataBinding.Ajax().Select("ProjectPictureList", "Project", new { projectId = Model.Id })
+                            .Update("ProjectPictureUpdate", "Project")
+                            .Delete("ProjectPictureDelete", "Project");
+                    })
+                    .EnableCustomBinding(true))
+    </div>
+    <p>
+        <strong>@T("Admin.Catalog.Products.Pictures.AddNew")</strong>
+    </p>
+    <script type="text/javascript">
+     
+        $(document).ready(function () {
+            $('#addProductPicture').click(function () {
+                var pictureId = $("#@Html.FieldIdFor(model => model.AddPictureModel.PictureId)").val();
+                var displayOrder = $("#@Html.FieldIdFor(model => model.AddPictureModel.DisplayOrder)").val();
+                
+                if (pictureId == 0) {
+                    alert('Upload picture first');
+                    return;
+                }
+
+                $('#addProductPicture').attr('disabled', true);
+                $.ajax({
+                    cache:false,
+                    type: "POST",
+                    url: "@(Url.Action("ProjectPictureAdd", "Project"))",
+                    data: { "pictureId": pictureId, "displayOrder": displayOrder, "projectId": @Model.Id },
+                success: function (data) {
+                    var productpicturesGrid = $("#productpictures-grid");
+                    productpicturesGrid.data('tGrid').ajaxRequest();
+                    $('#addProductPicture').attr('disabled', false);
+                },
+                error:function (xhr, ajaxOptions, thrownError){
+                    alert('Failed to add product picture.');
+                    $('#addProductPicture').attr('disabled', false);
+                }  
+            });
+        });
+        });
+    </script>        
+    <table class="adminContent">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.AddPictureModel.PictureId):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.AddPictureModel.PictureId)
+                @Html.ValidationMessageFor(model => model.AddPictureModel.PictureId)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => model.AddPictureModel.DisplayOrder):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.AddPictureModel.DisplayOrder)
+                @Html.ValidationMessageFor(model => model.AddPictureModel.DisplayOrder)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="left">
+                <input type="button" id="addProductPicture" class="t-button" value="Add Project Picture" />
+            </td>
+        </tr>
+    </table>
+    }
+    else
+    {
+    <text>You need to save the project before you can upload pictures for this project page.</text>
+    }*@

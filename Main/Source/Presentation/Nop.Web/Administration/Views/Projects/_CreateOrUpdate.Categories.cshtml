@@ -1,0 +1,162 @@
+﻿@using Nop.Admin.Models.Projects
+@using Nop.Services.Catalog
+@model ProjectModel
+
+
+@*@if (Model.Id > 0)
+{
+    if (Model.NumberOfAvailableCategories > 0)
+    {*@
+   
+        <div id="productcategories-grid"></div>
+
+        <script>
+            $(document).ready(function () {
+                $("#productcategories-grid").kendoGrid({
+                    dataSource: {
+                        type: "json",
+                        transport: {
+                            read: {
+                                url: "@Html.Raw(Url.Action("ProjectCategoryList", "Projects", new { projectId = Model.Id }))",
+                                type: "POST",
+                                dataType: "json"
+                            },
+                            create: {
+                                url: "@Html.Raw(Url.Action("ProjectCategoryInsert", "Projects", new { projectId = Model.Id }))",
+                                type: "POST",
+                                dataType: "json"
+                            },
+                            update: {
+                                url:"@Html.Raw(Url.Action("ProjectCategoryUpdate", "Projects"))",
+                                type: "POST",
+                                dataType: "json"
+                            },
+                            destroy: {
+                                url: "@Html.Raw(Url.Action("ProjectCategoryDelete", "Projects"))",
+                                type: "POST",
+                                dataType: "json"
+                            }
+                        },
+                        schema: {
+                            data: "Data",
+                            total: "Total",
+                            errors: "Errors",
+                            model: {
+                                id: "Id",
+                                fields: {
+                                    Category: { editable: true, type: "string" },
+                                    CategoryId: { editable: true, type: "number" },
+                                    DisplayOrder1: { editable: true, type: "number" },
+                                    Id: { editable: false, type: "number" }
+                                }
+                            }
+                        },
+                        requestEnd: function (e) {
+                            if (e.type == "create" || e.type == "update") {
+                                this.read();
+                            }
+                        },
+                        error: function (e) {
+                            display_kendoui_grid_error(e);
+                            // Cancel the changes
+                            this.cancelChanges();
+                        },
+                        serverPaging: true,
+                        serverFiltering: true,
+                        serverSorting: true
+                    },
+                    pageable: {
+                        refresh: true,
+                        numeric: false,
+                        previousNext: false,
+                        info: false
+                    },
+                    toolbar: ["create"],
+                    edit: function(e) {
+                        if (e.model.isNew()) {
+                            //little hack here
+                            //pre-select the first value of kendoui dropdownlist datasource
+                            //for some reasons (maybe, bug) it always sends 0
+                            //if no value has been selected (changed) in the dropdownlist
+                            if (allCategories.length > 0) {
+                                e.model.CategoryId = allCategories[0].Id;
+                            }
+                        }
+                    },
+                    editable: {
+                        confirmation: false,
+                        mode: "inline"
+                    },
+                    scrollable: false,
+                    columns: [{
+                            field: "CategoryId",
+                            title: "@T("Admin.Catalog.Products.Categories.Fields.Category")",
+                            width: 200,
+                            editor: categoryDropDownEditor, 
+                    template: "#:ProjectCategory#"
+                        },  {
+                        field: "DisplayOrder1",
+                        title: "@T("Admin.Catalog.Products.Categories.Fields.DisplayOrder")",
+                        width: 200,
+                        //integer format
+                        format: "{0:0}"
+                    }, {
+                        command: [{
+                            name: "edit",
+                            text: "@T("Admin.Common.Edit")"
+                        }, {
+                            name: "destroy",
+                            text: "@T("Admin.Common.Delete")"
+                        }],
+                        width: 200
+                    }]
+                });
+            });
+                
+                        //local datasource
+                        var allCategories = [
+                            @{
+                                var categoryService = EngineContext.Current.Resolve<ICategoryService>();
+                        var allCategories = categoryService.GetAllCategories(showHidden: true);
+                        }
+                @for (int i = 0; i < allCategories.Count; i++)
+                        {
+                    var category = allCategories[i];
+                    <text>
+                        {
+                            Id: @(category.Id),
+                            Name: "@(Html.Raw(HttpUtility.JavaScriptStringEncode(category.GetFormattedBreadCrumb(allCategories))))"
+                        }
+                        </text>
+                    if (i != allCategories.Count - 1)
+                        {
+                        <text>,</text>
+                        }
+                        }
+                        ];
+
+            function categoryDropDownEditor(container, options) {
+                $('<input required data-text-field="Name" data-value-field="Id" data-bind="value:CategoryId"/>')
+                    .appendTo(container)
+                    .kendoDropDownList({
+                            autoBind: false,
+                            dataSource: allCategories
+                        });
+                        }
+        </script>                       
+
+
+     @*}
+    else
+    {
+    @T("Admin.Catalog.Products.Categories.NoCategoriesAvailable")
+    }
+}
+else
+{
+    <text>You need to save the project before you can map categories for this project page.</text>
+}*@
+   
+
+
+

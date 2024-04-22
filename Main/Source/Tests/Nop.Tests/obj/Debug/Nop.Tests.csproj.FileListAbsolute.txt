@@ -1,0 +1,9 @@
+E:\OdeskWork\iLove2Create\Main\Source\Tests\Nop.Tests\bin\Debug\Nop.Tests.dll
+E:\OdeskWork\iLove2Create\Main\Source\Tests\Nop.Tests\bin\Debug\Nop.Tests.pdb
+E:\OdeskWork\iLove2Create\Main\Source\Tests\Nop.Tests\bin\Debug\nunit.framework.dll
+E:\OdeskWork\iLove2Create\Main\Source\Tests\Nop.Tests\bin\Debug\Rhino.Mocks.dll
+E:\OdeskWork\iLove2Create\Main\Source\Tests\Nop.Tests\bin\Debug\nunit.framework.xml
+E:\OdeskWork\iLove2Create\Main\Source\Tests\Nop.Tests\bin\Debug\Rhino.Mocks.xml
+E:\OdeskWork\iLove2Create\Main\Source\Tests\Nop.Tests\obj\Debug\Nop.Tests.csprojResolveAssemblyReference.cache
+E:\OdeskWork\iLove2Create\Main\Source\Tests\Nop.Tests\obj\Debug\Nop.Tests.dll
+E:\OdeskWork\iLove2Create\Main\Source\Tests\Nop.Tests\obj\Debug\Nop.Tests.pdb

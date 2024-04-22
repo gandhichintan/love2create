@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Nop.Core.Domain.Projects
+{
+    public partial class ProjectPictureMapping : BaseEntity
+    {
+        /// <summary>
+        /// Gets or sets the product identifier
+        /// </summary>
+        public virtual int ProjectId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the category identifier
+        /// </summary>
+        public virtual int PictureId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the display order
+        /// </summary>
+        public virtual int DisplayOrder { get; set; }
+    }
+}

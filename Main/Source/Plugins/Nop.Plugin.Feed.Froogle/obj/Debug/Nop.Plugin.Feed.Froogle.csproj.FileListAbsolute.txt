@@ -1,0 +1,11 @@
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Feed.Froogle\Views\FeedFroogle\Configure.cshtml
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Feed.Froogle\Description.txt
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Feed.Froogle\web.config
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Feed.Froogle\Content\styles.css
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Feed.Froogle\logo.jpg
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Feed.Froogle\Nop.Plugin.Feed.Froogle.dll.config
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Feed.Froogle\Nop.Plugin.Feed.Froogle.dll
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Feed.Froogle\Nop.Plugin.Feed.Froogle.pdb
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Feed.Froogle\obj\Debug\Nop.Plugin.Feed.Froogle.csprojResolveAssemblyReference.cache
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Feed.Froogle\obj\Debug\Nop.Plugin.Feed.Froogle.dll
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Feed.Froogle\obj\Debug\Nop.Plugin.Feed.Froogle.pdb

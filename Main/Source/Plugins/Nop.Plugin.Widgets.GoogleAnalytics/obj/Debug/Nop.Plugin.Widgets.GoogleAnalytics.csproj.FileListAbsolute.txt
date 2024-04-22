@@ -1,0 +1,9 @@
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\Views\WidgetsGoogleAnalytics\Configure.cshtml
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\web.config
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\Description.txt
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\logo.jpg
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\Nop.Plugin.Widgets.GoogleAnalytics.dll.config
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\Nop.Plugin.Widgets.GoogleAnalytics.dll
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Widgets.GoogleAnalytics\Nop.Plugin.Widgets.GoogleAnalytics.pdb
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Widgets.GoogleAnalytics\obj\Debug\Nop.Plugin.Widgets.GoogleAnalytics.dll
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Widgets.GoogleAnalytics\obj\Debug\Nop.Plugin.Widgets.GoogleAnalytics.pdb

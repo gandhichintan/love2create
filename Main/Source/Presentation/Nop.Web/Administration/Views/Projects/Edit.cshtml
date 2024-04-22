@@ -1,0 +1,22 @@
+﻿@model ProjectModel
+@using Nop.Admin.Models.Projects
+@{
+    //page title
+    ViewBag.Title = "Edit Project Details";
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "product-form" }))
+{
+    <div class="section-header">
+        <div class="title">
+            @Html.ActionLink("(back to project list)", "List")
+            <img src="@Url.Content("~/Administration/Content/images/ico-catalog.png")" alt="" /> Edit Project Details - @Model.Name 
+        </div>
+        <div class="options">
+            <input type="submit" name="save" class="t-button" value="@T("Admin.Common.Save")" />
+            <input type="submit" name="save-continue" class="t-button" value="@T("Admin.Common.SaveContinue")" />
+            <span id="product-delete" class="t-button">@T("Admin.Common.Delete")</span>
+        </div>
+    </div>
+    @Html.Partial("_CreateOrUpdate", Model)
+}
+@Html.DeleteConfirmation("product-delete")

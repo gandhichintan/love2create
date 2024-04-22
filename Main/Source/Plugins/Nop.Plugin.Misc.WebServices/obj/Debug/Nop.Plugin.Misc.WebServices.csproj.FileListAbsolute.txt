@@ -1,0 +1,12 @@
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Misc.WebServices\Description.txt
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Misc.WebServices\Views\MiscWebServices\Configure.cshtml
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Misc.WebServices\web.config
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Misc.WebServices\logo.jpg
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Misc.WebServices\Remote\NopService.svc
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Misc.WebServices\Remote\web.config
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Misc.WebServices\Nop.Plugin.Misc.WebServices.dll.config
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Misc.WebServices\Nop.Plugin.Misc.WebServices.dll
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Misc.WebServices\Nop.Plugin.Misc.WebServices.pdb
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Misc.WebServices\obj\Debug\Nop.Plugin.Misc.WebServices.csprojResolveAssemblyReference.cache
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Misc.WebServices\obj\Debug\Nop.Plugin.Misc.WebServices.dll
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Misc.WebServices\obj\Debug\Nop.Plugin.Misc.WebServices.pdb

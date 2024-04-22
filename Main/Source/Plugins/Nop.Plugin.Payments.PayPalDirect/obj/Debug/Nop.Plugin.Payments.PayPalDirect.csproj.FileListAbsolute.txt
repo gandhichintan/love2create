@@ -1,0 +1,11 @@
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Payments.PayPalDirect\Views\PaymentPayPalDirect\Configure.cshtml
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Payments.PayPalDirect\Views\PaymentPayPalDirect\PaymentInfo.cshtml
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Payments.PayPalDirect\web.config
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Payments.PayPalDirect\Description.txt
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Payments.PayPalDirect\logo.jpg
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Payments.PayPalDirect\Nop.Plugin.Payments.PayPalDirect.dll.config
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Payments.PayPalDirect\Nop.Plugin.Payments.PayPalDirect.dll
+E:\OdeskWork\iLove2Create\Main\Source\Presentation\Nop.Web\Plugins\Payments.PayPalDirect\Nop.Plugin.Payments.PayPalDirect.pdb
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Payments.PayPalDirect\obj\Debug\Nop.Plugin.Payments.PayPalDirect.csprojResolveAssemblyReference.cache
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Payments.PayPalDirect\obj\Debug\Nop.Plugin.Payments.PayPalDirect.dll
+E:\OdeskWork\iLove2Create\Main\Source\Plugins\Nop.Plugin.Payments.PayPalDirect\obj\Debug\Nop.Plugin.Payments.PayPalDirect.pdb

@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CCD7F2C9-6A2C-4CF0-8E89-076B8FC0F144}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Nop.Data</RootNamespace>
+    <AssemblyName>Nop.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.SqlServerCompact.6.1.1\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions.cs" />
+    <Compile Include="DataReaderExtensions.cs" />
+    <Compile Include="DbContextExtensions.cs" />
+    <Compile Include="Initializers\CreateCeDatabaseIfNotExists.cs" />
+    <Compile Include="Initializers\DropCreateCeDatabaseAlways.cs" />
+    <Compile Include="Initializers\DropCreateCeDatabaseIfModelChanges.cs" />
+    <Compile Include="Initializers\SqlCeInitializer.cs" />
+    <Compile Include="Initializers\CreateTablesIfNotExist.cs" />
+    <Compile Include="EfDataProviderManager.cs" />
+    <Compile Include="Mapping\Catalog\BackInStockSubscriptionMap.cs" />
+    <Compile Include="Mapping\Catalog\BlogsWeLoveMap.cs" />
+    <Compile Include="Mapping\Catalog\BookMap.cs" />
+    <Compile Include="Mapping\Catalog\BundleMap.cs" />
+    <Compile Include="Mapping\Catalog\BundlePictureMap.cs" />
+    <Compile Include="Mapping\Catalog\BundleProductMap.cs" />
+    <Compile Include="Mapping\Catalog\BundleProjectMap.cs" />
+    <Compile Include="Mapping\Catalog\BundleReviewMap.cs" />
+    <Compile Include="Mapping\Catalog\CareerCategoryMap.cs" />
+    <Compile Include="Mapping\Catalog\CareerInformationMap.cs" />
+    <Compile Include="Mapping\Catalog\CareerOpeningMap.cs" />
+    <Compile Include="Mapping\Catalog\CategoryVideoMap.cs" />
+    <Compile Include="Mapping\Catalog\EventMap.cs" />
+    <Compile Include="Mapping\Catalog\FaqCategoryMap.cs" />
+    <Compile Include="Mapping\Catalog\FaqCategoryMappingMap.cs" />
+    <Compile Include="Mapping\Catalog\FaqMap.cs" />
+    <Compile Include="Mapping\Catalog\ManufacturerLikeMap.cs" />
+    <Compile Include="Mapping\Catalog\ManufacturerReviewMap.cs" />
+    <Compile Include="Mapping\Catalog\ManufacturerSliderMap.cs" />
+    <Compile Include="Mapping\Catalog\ManufacturerTemplateMap.cs" />
+    <Compile Include="Mapping\Catalog\CategoryTemplateMap.cs" />
+    <Compile Include="Mapping\Catalog\ManufacturerVideoMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductFaqMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductHowToBundleMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductHowToCategoryMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductHowToManufacturerMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductHowToMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductHowToPictureMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductHowToProductMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductHowToProjectMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductHowToTechniqueMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductHowToVideoMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductLikeMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductTemplateMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductVideoMap.cs" />
+    <Compile Include="Mapping\Catalog\ProjectCatMap.cs" />
+    <Compile Include="Mapping\Catalog\ProjectManufacturerMap.cs" />
+    <Compile Include="Mapping\Catalog\SafetyCategoryMap.cs" />
+    <Compile Include="Mapping\Catalog\SafetyMap.cs" />
+    <Compile Include="Mapping\Catalog\SiteContentMap.cs" />
+    <Compile Include="Mapping\Catalog\SiteMap.cs" />
+    <Compile Include="Mapping\Catalog\SiteWeLoveMap.cs" />
+    <Compile Include="Mapping\Catalog\SponsorshipMap.cs" />
+    <Compile Include="Mapping\Catalog\SurveyCategoryMap.cs" />
+    <Compile Include="Mapping\Catalog\SurveyCategoryRegistrationMap.cs" />
+    <Compile Include="Mapping\Catalog\SurveyRegistrationMap.cs" />
+    <Compile Include="Mapping\Catalog\TechniqueManufacturerMap.cs" />
+    <Compile Include="Mapping\Catalog\TrendMap.cs" />
+    <Compile Include="Mapping\Catalog\TrendReportMap.cs" />
+    <Compile Include="Mapping\Common\SearchTermMap.cs" />
+    <Compile Include="Mapping\Common\GenericAttributeMap.cs" />
+    <Compile Include="Mapping\Customers\AuthorMap.cs" />
+    <Compile Include="Mapping\Customers\ConsumerMap.cs" />
+    <Compile Include="Mapping\Customers\CustomerAttributeMap.cs" />
+    <Compile Include="Mapping\Customers\CustomerAttributeValueMap.cs" />
+    <Compile Include="Mapping\Customers\CustomerMiscMap.cs" />
+    <Compile Include="Mapping\Customers\DistributorProfileMap.cs" />
+    <Compile Include="Mapping\Customers\RetailerProfileMap.cs" />
+    <Compile Include="Mapping\Projects\AmbassadorLinksCategoryMap.cs" />
+    <Compile Include="Mapping\Projects\AmbassadorLinksProductCategoryMap.cs" />
+    <Compile Include="Mapping\Projects\AmbassadorLinksProductMap.cs" />
+    <Compile Include="Mapping\Projects\AmbassadorProfileMap.cs" />
+    <Compile Include="Mapping\Projects\ArticleCommentMap.cs" />
+    <Compile Include="Mapping\Projects\ArticleCommentMappingMap.cs" />
+    <Compile Include="Mapping\Projects\BusinessBuilderCategoryMap.cs" />
+    <Compile Include="Mapping\Projects\BusinessBuilderProductCategoryMap.cs" />
+    <Compile Include="Mapping\Projects\BusinessBuilderProductMap.cs" />
+    <Compile Include="Mapping\Projects\DistributorLinkMap.cs" />
+    <Compile Include="Mapping\Projects\DocumentCenterMap.cs" />
+    <Compile Include="Mapping\Projects\FollowerMap.cs" />
+    <Compile Include="Mapping\Projects\GalleryCategoryMap.cs" />
+    <Compile Include="Mapping\Projects\GalleryProductCategoryMap.cs" />
+    <Compile Include="Mapping\Projects\GalleryProductMap.cs" />
+    <Compile Include="Mapping\Projects\PatternMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectCategoryMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectCategoryMappingMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectCustomerMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectFavoriteMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectInstructionMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectLikeMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectMaterialMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectMiscMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectPatternMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectPictureMappingMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectProductMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectReviewMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectTagMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectTechniqueMap.cs" />
+    <Compile Include="Mapping\Projects\ProjectVideoMap.cs" />
+    <Compile Include="Mapping\Projects\RelatedProjectMap.cs" />
+    <Compile Include="Mapping\Projects\TechniqueDetailMap.cs" />
+    <Compile Include="Mapping\Projects\TechniqueMap.cs" />
+    <Compile Include="Mapping\Projects\UserGalleryMap.cs" />
+    <Compile Include="Mapping\Projects\VideoMap.cs" />
+    <Compile Include="Mapping\Projects\WorkshopMap.cs" />
+    <Compile Include="Mapping\Shipping\WarehouseMap.cs" />
+    <Compile Include="Mapping\Shipping\DeliveryDateMap.cs" />
+    <Compile Include="Mapping\Vendors\VendorMap.cs" />
+    <Compile Include="Mapping\Stores\StoreMappingMap.cs" />
+    <Compile Include="Mapping\Stores\StoreMap.cs" />
+    <Compile Include="Mapping\Security\AclRecordMap.cs" />
+    <Compile Include="Mapping\Seo\UrlRecordMap.cs" />
+    <Compile Include="Mapping\Customers\ExternalAuthenticationRecordMap.cs" />
+    <Compile Include="Mapping\Shipping\ShipmentMap.cs" />
+    <Compile Include="Mapping\Shipping\ShipmentItemMap.cs" />
+    <Compile Include="Mapping\Tasks\ScheduleTaskMap.cs" />
+    <Compile Include="SqlServerDataProvider.cs" />
+    <Compile Include="SqlCeDataProvider.cs" />
+    <Compile Include="IDbContext.cs" />
+    <Compile Include="Mapping\Affiliates\AffiliateMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductTagMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductReviewHelpfulnessMap.cs" />
+    <Compile Include="Mapping\Common\AddressMap.cs" />
+    <Compile Include="Mapping\Blogs\BlogPostMap.cs" />
+    <Compile Include="Mapping\Blogs\BlogCommentMap.cs" />
+    <Compile Include="Mapping\News\NewsCommentMap.cs" />
+    <Compile Include="Mapping\News\NewsItemMap.cs" />
+    <Compile Include="Mapping\Customers\CustomerRoleMap.cs" />
+    <Compile Include="Mapping\Customers\RewardPointsHistoryMap.cs" />
+    <Compile Include="Mapping\Directory\MeasureWeightMap.cs" />
+    <Compile Include="Mapping\Directory\MeasureDimensionMap.cs" />
+    <Compile Include="Mapping\Directory\CurrencyMap.cs" />
+    <Compile Include="Mapping\Directory\CountryMap.cs" />
+    <Compile Include="Mapping\Discounts\DiscountUsageHistoryMap.cs" />
+    <Compile Include="Mapping\Discounts\DiscountMap.cs" />
+    <Compile Include="Mapping\Discounts\DiscountRequirementMap.cs" />
+    <Compile Include="Mapping\Forums\ForumGroupMap.cs" />
+    <Compile Include="Mapping\Forums\ForumMap.cs" />
+    <Compile Include="Mapping\Forums\ForumPostMap.cs" />
+    <Compile Include="Mapping\Forums\ForumSubscriptionMap.cs" />
+    <Compile Include="Mapping\Forums\ForumTopicMap.cs" />
+    <Compile Include="Mapping\Forums\PrivateMessageMap.cs" />
+    <Compile Include="Mapping\Logging\ActivityLogMap.cs" />
+    <Compile Include="Mapping\Logging\ActivityLogTypeMap.cs" />
+    <Compile Include="Mapping\Media\DownloadMap.cs" />
+    <Compile Include="Mapping\Messages\CampaignMap.cs" />
+    <Compile Include="Mapping\Messages\EmailAccountMap.cs" />
+    <Compile Include="Mapping\Messages\MessageTemplateMap.cs" />
+    <Compile Include="Mapping\Messages\NewsLetterSubscriptionMap.cs" />
+    <Compile Include="Mapping\Messages\QueuedEmailMap.cs" />
+    <Compile Include="Mapping\Orders\CheckoutAttributeMap.cs" />
+    <Compile Include="Mapping\Orders\CheckoutAttributeValueMap.cs" />
+    <Compile Include="Mapping\Orders\ReturnRequestMap.cs" />
+    <Compile Include="Mapping\Orders\RecurringPaymentHistoryMap.cs" />
+    <Compile Include="Mapping\Orders\RecurringPaymentMap.cs" />
+    <Compile Include="Mapping\Orders\OrderItemMap.cs" />
+    <Compile Include="Mapping\Orders\OrderNoteMap.cs" />
+    <Compile Include="Mapping\Orders\GiftCardMap.cs" />
+    <Compile Include="Mapping\Orders\GiftCardUsageHistoryMap.cs" />
+    <Compile Include="Mapping\Orders\ShoppingCartItemMap.cs" />
+    <Compile Include="Mapping\Orders\OrderMap.cs" />
+    <Compile Include="Mapping\Polls\PollMap.cs" />
+    <Compile Include="Mapping\Polls\PollVotingRecordMap.cs" />
+    <Compile Include="Mapping\Polls\PollAnswerMap.cs" />
+    <Compile Include="Mapping\Security\PermissionRecordMap.cs" />
+    <Compile Include="Mapping\Directory\StateProvinceMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductReviewMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductAttributeMap.cs" />
+    <Compile Include="Mapping\Localization\LocalizedPropertyMap.cs" />
+    <Compile Include="Mapping\Catalog\TierPriceMap.cs" />
+    <Compile Include="Mapping\Catalog\RelatedProductMap.cs" />
+    <Compile Include="Mapping\Catalog\CrossSellProductMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductSpecificationAttributeMap.cs" />
+    <Compile Include="Mapping\Catalog\SpecificationAttributeOptionMap.cs" />
+    <Compile Include="Mapping\Catalog\SpecificationAttributeMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductVariantAttributeValueMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductVariantAttributeCombinationMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductVariantAttributeMap.cs" />
+    <Compile Include="Mapping\Media\PictureMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductPictureMap.cs" />
+    <Compile Include="Mapping\Catalog\ManufacturerMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductManufacturerMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductCategoryMap.cs" />
+    <Compile Include="Mapping\Catalog\CategoryMap.cs" />
+    <Compile Include="Mapping\Catalog\ProductMap.cs" />
+    <Compile Include="Mapping\Customers\CustomerMap.cs" />
+    <Compile Include="Mapping\Logging\LogMap.cs" />
+    <Compile Include="Mapping\Localization\LanguageMap.cs" />
+    <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
+    <Compile Include="Mapping\Configuration\SettingMap.cs" />
+    <Compile Include="Mapping\Shipping\ShippingMethodMap.cs" />
+    <Compile Include="Mapping\Tax\TaxCategoryMap.cs" />
+    <Compile Include="Mapping\Topics\TopicMap.cs" />
+    <Compile Include="NopObjectContext.cs" />
+    <Compile Include="EfRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EfStartUpTask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nop.Core\Nop.Core.csproj">
+      <Project>{6BDA8332-939F-45B7-A25E-7A797260AE59}</Project>
+      <Name>Nop.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,107 @@
+﻿@using Nop.Admin.Models.Projects
+@model ProjectListModel
+@{
+    var defaultGridPageSize = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().DefaultGridPageSize;
+    var gridPageSizes = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().GridPageSizes;
+
+    //page title
+    ViewBag.Title = "Manage Projects";
+}
+
+ <div class="section-header">
+        <div class="title">
+            <img src="@Url.Content("~/Administration/Content/images/ico-catalog.png")" alt="" />
+            Manage Projects
+        </div>
+        <div class="options">
+            <a href="@Url.Action("Create")" class="k-button">@T("Admin.Common.AddNew")</a>
+        </div>
+    </div>
+    <table width="100%">
+        <tr>
+            <td class="adminTitle">
+                @Html.NopLabelFor(model => Model.SearchProjectName):
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => Model.SearchProjectName)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" id="btnSearch" class="k-button" value="@T("Admin.Common.Search")" />
+            </td>
+        </tr>
+    </table>
+
+<table class="adminContent">
+    <tr>
+        <td>
+
+            <div id="project-grid"></div>
+
+            <script>
+                $(document).ready(function () {
+                    $("#project-grid").kendoGrid({
+                        dataSource: {
+                            type: "json",
+                            transport: {
+                                read: {
+                                    url: "@Html.Raw(Url.Action("List", "Projects"))",
+                                    type: "POST",
+                                    dataType: "json",
+                                }
+                            },
+                            schema: {
+                                data: "Data",
+                                total: "Total",
+                                errors: "Errors"
+                            },
+                            error: function(e) {
+                                display_kendoui_grid_error(e);
+                                // Cancel the changes
+                                this.cancelChanges();
+                            },
+                            serverPaging: true,
+                            serverFiltering: true,
+                            serverSorting: true
+                        },
+                        pageable: {
+                            refresh: true,
+                            numeric: true,
+                            previousNext: true,
+                            info: true,
+                            pageSizes: [@(gridPageSizes)]
+                        },
+                        editable: {
+                            confirmation: false,
+                            mode: "inline"
+                        },
+
+                        scrollable: false,
+                        columns: [{
+                            field: "Name",
+                            title: "@T("Admin.Projects.Project.Fields.Name")",
+                            width: 300
+                },{
+                    field: "Description",
+                    title: "@T("Admin.Projects.Project.Fields.Description")",
+                    width: 300
+                    },{
+                        field: "Published",
+                        title: "@T("Admin.Projects.Project.Fields.Published")",
+                        width: 100,
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        template: '<img src="@Url.Content("~/Administration/Content/images/")active-#=Published#.gif" />'
+                    },{
+                            field: "Id",
+                            title: "@T("Admin.Common.Edit")",
+                            width: 100,
+                            template: '<a href="Edit/#=Id#">@T("Admin.Common.Edit")</a>'
+                        }]
+                    });
+                });
+            </script>
+        </td>
+    </tr>
+</table>
